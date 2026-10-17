@@ -1,39 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="/src/pages/auth/login/login.css">
+    <title>Food Store - Login</title>
 </head>
-
 <body>
-    <h1> Login</h1>
-
+    <h1>Login</h1>
     <form id="form">
-
-        <div>
+        <div class="form-campo">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" autocomplete="off" placeholder="example@example.com">
+            <input type="email" id="email" name="email" autocomplete="off" placeholder="example@example.com" required>
         </div>
-        <div>
-            <label for="password">password</label>
-            <input type="password" id="password" name="password" autocomplete="off" placeholder="********">
+        <div class="form-campo">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="off" placeholder="********" required>
         </div>
-        <div>
-            <label for="rol">Rol</label>
-            <select name="rol" id="rol">
-                <option value="">Seleccione un rol</option>
-                <option value="client">Cliente</option>
-                <option value="admin">Admin</option>
-            </select>
-        </div>
-
-        <button type="submit">Ingresar</button>
-
+        <button class="buscador__btn" type="submit">Ingresar</button>
+        <a class="form-anchor" href="/src/pages/auth/registro/registro.html">No tengo cuenta</a>
+        <a class="form-anchor" href="/src/pages/guest/guest.html">Entrar como invitado</a>
     </form>
-
     <script type="module" src="./login.ts"></script>
 </body>
-
 </html>

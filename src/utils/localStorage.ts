@@ -10,3 +10,10 @@ export const getUSer = () => {
 export const removeUser = () => {
   localStorage.removeItem("userData");
 };
+export const actualizarUsers = (users: IUser[]): void => {
+    const parseUsers = JSON.stringify(users);
+    localStorage.setItem("users", parseUsers);
+}
+export const getUsers = () => {
+  return localStorage.getItem("users");
+}

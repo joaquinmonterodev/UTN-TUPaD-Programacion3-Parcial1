@@ -1,0 +1,38 @@
+body {
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+.productos__container {
+    flex-direction: column;
+    gap: .2rem;
+    justify-content: center;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 1fr 9fr 3fr 3fr 1fr;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    line-height: 1rem;
+}
+
+.cart-item img {
+  height: 3rem;
+  width: 3rem;
+  object-fit: cover;
+}
+
+.productos__subtotal {
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: end;
+  margin: 1rem;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Store</title>
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="/src/pages/admin/panel/panel.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__title">Food Store</h1>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__link"><a href="/src/pages/admin/home/home.html">Inicio</a></li>
+                <li class="nav__link"><a href="/src/pages/admin/panel/panel.html">Panel Admin</a></li>
+                <li id="logoutButton" class="nav__link"><a href="#">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="productos">
+            <h2 id="productos-title" class="productos__title">Administración de Food Store</h2>
+            <div id="menu">
+                <button id="crear-categoria-btn" class="agregar-btn" type="button">Crear categoría</button>
+                <button id="crear-producto-btn" class="agregar-btn" type="button">Crear producto</button>
+            </div>
+        </section>
+    </main>
+    <hr>
+    <footer class="footer">
+        <p class="footer__text">&copy; Food Store. Todos los derechos reservados.</p>
+        <p class="footer__text">Contacto: joaquinmontero@foodstore.com</p>
+    </footer>
+    <script type="module" src="/src/pages/admin/panel/panel.ts"></script>
+</body>
+</html>

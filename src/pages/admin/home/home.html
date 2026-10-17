@@ -1,17 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Food Store</title>
+    <link rel="stylesheet" href="/src/style.css">
 </head>
-
 <body>
-    <h1>Hola desde la vista de admin</h1>
-    <button id="logoutButton">Logout</button>
-    <script type="module" src="./home.ts"></script>
+    <header class="header">
+        <h1 class="header__title">Food Store</h1>
+        <form action="#" class="buscador" id="buscador">
+            <label class="buscador__label" for="buscador-texto">Buscar: </label>
+            <input class="buscador__input" type="text" name="buscador" id="buscador-texto">
+            <button class="buscador__btn" type="submit">Ir</button>
+        </form>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__link"><a href="#inicio">Inicio</a></li>
+                <li class="nav__link"><a href="/src/pages/admin/panel/panel.html">Panel Admin</a></li>
+                <li id="logoutButton" class="nav__link"><a href="#">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <aside id="categorias" class="categorias">
+        <h2 class="categorias__title">Categorías</h2>
+        <ul id="categorias-lista" class="categorias__lista"></ul>
+        <a id="ver-todos">VER TODOS</a>
+    </aside>
+    <main>
+        <section class="productos">
+            <h2 id="productos-title" class="productos__title">Todos los productos</h2>
+            <div class="productos__container" id="productos"></div>
+        </section>
+    </main>
+    <hr>
+    <footer class="footer">
+        <p class="footer__text">&copy; Food Store. Todos los derechos reservados.</p>
+        <p class="footer__text">Contacto: joaquinmontero@foodstore.com</p>
+    </footer>
+    <script type="module" src="/src/pages/admin/home/home.ts"></script>
 </body>
-
-
 </html>
