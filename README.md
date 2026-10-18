@@ -1,83 +1,88 @@
-# Proyecto: Protección de Rutas (Educativo)
+# Food Store — Protección de rutas
 
-## ✍️ Descripción
+## 🎥 Video explicativo
 
-Este es un proyecto de demostración creado con fines educativos para ilustrar un mecanismo básico de protección de rutas en el lado del cliente (frontend) utilizando **Vite** y **TypeScript**.
+▶️ [Ver video de presentación del proyecto] https://youtu.be/STB0fsKc8Io
 
-El objetivo es mostrar cómo se puede restringir el acceso a ciertas páginas según el rol de un usuario (por ejemplo, `ADMIN` o `CLIENT`).
+## Descripción
 
----
+Food Store es una aplicación web de demostración desarrollada con **TypeScript** y **Vite**. Simula una tienda de comidas y muestra cómo organizar el acceso a distintas pantallas según el rol del usuario: invitado, cliente o administrador.
 
-## ⚠️ ¡Importante! Nivel de Seguridad
+## Requisitos
 
-La protección de rutas implementada en este proyecto **NO ES SEGURA** y no debe utilizarse en un entorno de producción.
-
-- **Razón**: La lógica de autenticación se basa en datos guardados en `localStorage` en el navegador del usuario.
-- **Riesgo**: Cualquier usuario con conocimientos técnicos básicos puede abrir las herramientas de desarrollador del navegador para inspeccionar, modificar o eliminar los datos de `localStorage`, obteniendo así acceso no autorizado a rutas protegidas.
-
-Este enfoque es útil únicamente para fines de aprendizaje y para prototipos de bajo riesgo. La seguridad real debe implementarse en el **backend**.
-
----
-
-## 🚀 Instalación y Uso
-
-Se recomienda usar `pnpm` como gestor de paquetes para mayor eficiencia en el manejo de dependencias.
-
-### 1. Instalar pnpm
-
-Si no tienes `pnpm` instalado, puedes hacerlo fácilmente a través de `npm` (que viene con Node.js) ejecutando el siguiente comando en tu terminal:
+- [Node.js](https://nodejs.org/) y npm.
+- pnpm para seguir los comandos de instalación de esta guía. Si todavía no lo tenés, instalalo con:
 
 ```bash
-npm install -g pnpm
+npm install --global pnpm
 ```
 
-### 2. Instalar Dependencias del Proyecto
+## Cómo instalar y ejecutar
 
-Una vez en la carpeta raíz del proyecto, instala las dependencias necesarias con `pnpm`:
+Desde una terminal, ubicáte en la carpeta raíz del proyecto y ejecutá:
 
 ```bash
 pnpm install
-```
-
-### 3. Ejecutar el Proyecto
-
-Para iniciar el servidor de desarrollo de Vite, ejecuta:
-
-```bash
 pnpm dev
 ```
 
-La aplicación estará disponible en la URL que aparezca en la terminal (generalmente `http://localhost:5173`).
+Vite mostrará en la terminal la dirección local de la aplicación, generalmente `http://localhost:5173`. Abrí esa dirección en el navegador; la página inicial te llevará al catálogo para invitados.
 
----
+Para detener el servidor de desarrollo, presioná `Ctrl+C` en la terminal.
 
-## ⚙️ ¿Cómo Funciona la Protección de Rutas?
+### Otros comandos
 
-El mecanismo es simple y se gestiona desde el código TypeScript en la carpeta `src/utils`:
-
-1.  **Inicio de Sesión**: Cuando un usuario se "loguea", su información (incluido su rol) se guarda como un string JSON en `localStorage`.
-2.  **Carga de Página Protegida**: Cada vez que se intenta cargar una página protegida (ej. la página de Administrador), se ejecuta un script de verificación (`checkAuhtUser` en `src/utils/auth.ts`).
-3.  **Verificación**: El script comprueba:
-    - Si existe un usuario en `localStorage`. Si no, redirige al login.
-    - Si el rol del usuario guardado coincide con el rol requerido para acceder a esa página. Si no coincide, lo redirige a una página de acceso denegado o a su "home" correspondiente.
-4.  **Cierre de Sesión (Logout)**: Al cerrar sesión, la información del usuario se elimina de `localStorage`.
-
----
-
-## 📁 Estructura del Proyecto
-
+```bash
+pnpm build    # Comprueba los tipos de TypeScript y genera la versión de producción en dist/
+pnpm preview  # Sirve localmente la versión generada con pnpm build
 ```
-/
-├── src/
-│   ├── pages/                # Contiene las páginas de la aplicación
-│   │   ├── admin/            # Páginas solo para administradores
-│   │   ├── auth/             # Páginas de autenticación (login, registro)
-│   │   └── client/           # Páginas solo para clientes
-│   ├── types/                # Define las interfaces y tipos (IUser, Rol)
-│   └── utils/                # Lógica reutilizable
-│       ├── auth.ts           # Función principal de verificación de rol y sesión
-│       ├── localStorage.ts   # Funciones para leer/escribir en localStorage
-│       └── navigate.ts       # Función para redirigir al usuario
-├── package.json              # Dependencias y scripts
-└── README.md                 # Este archivo
+
+## Funcionalidades desarrolladas
+
+- **Catálogo para invitados:** permite consultar productos, filtrar por categoría, buscar por nombre y volver a ver todos los productos. Para agregar artículos al carrito, el invitado debe iniciar sesión.
+- **Registro e inicio de sesión:** se pueden crear cuentas de cliente e ingresar con una cuenta registrada. El formulario de registro solicita aceptar los términos y condiciones.
+- **Roles y rutas protegidas:** las páginas de cliente y administrador verifican la sesión y el rol; si no corresponden, redirigen al usuario.
+- **Catálogo para clientes:** permite filtrar y buscar productos, y agregar artículos al carrito.
+- **Carrito:** muestra productos, cantidades y subtotales; permite eliminar artículos y consultar el subtotal total.
+- **Sesión:** el usuario puede cerrar sesión desde las vistas con navegación de cliente o administrador.
+- **Panel de administración:** incluye una opción para crear categorías durante la sesión actual.
+
+### Cuenta de demostración
+
+Al abrir el formulario de inicio de sesión por primera vez en un navegador sin usuarios guardados, se inicializa esta cuenta:
+
+| Rol | Email | Contraseña |
+| --- | --- | --- |
+| Administrador | `admin@admin.com` | `admin` |
+
+También podés registrar una cuenta nueva, que tendrá el rol de cliente.
+
+## Persistencia y alcance
+
+Los usuarios, la sesión y los carritos se guardan en el `localStorage` del navegador. Los productos y las categorías iniciales están definidos en el código; las categorías agregadas desde el panel se mantienen solo en memoria y se pierden al recargar la aplicación.
+
+Este proyecto es educativo: la autenticación y la protección de rutas ocurren en el frontend y no proporcionan seguridad real. Los datos almacenados en `localStorage` pueden ser consultados o modificados por el usuario, y no existe validación de acceso en un backend. No uses estas protecciones para resguardar información o recursos en producción.
+
+## Tecnologías
+
+- TypeScript
+- Vite
+- HTML y CSS
+- `localStorage` para persistencia en el navegador
+
+## Estructura principal
+
+```text
+.
+├── index.html
+├── package.json
+└── src/
+    ├── data/       # Productos y categorías de ejemplo
+    ├── pages/
+    │   ├── admin/  # Inicio y panel de administración
+    │   ├── auth/   # Inicio de sesión y registro
+    │   ├── client/ # Catálogo y carrito
+    │   └── guest/  # Catálogo para invitados
+    ├── types/      # Tipos de usuario, roles, productos y categorías
+    └── utils/      # Autenticación, navegación, carrito y localStorage
 ```
